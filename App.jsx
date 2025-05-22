@@ -19,6 +19,10 @@ function App() {
   {
     id:4,
     name:'Bruce'
+  },
+  {
+    id:10,
+    name:'Tony'
   }
  ]
   return (
@@ -26,12 +30,20 @@ function App() {
     <Text style={{fontSize:31}}>
       List with Flat List Component
     </Text>
-    <FlatList data={users}/>
+    <FlatList data={users} renderItem={({item})=><Text style={styles.item}>{item.name}</Text>}
+    keyExtractor = {item=>item.id}
+    />
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  textInput: {fontSize: 18, borderWidth: 2, borderColor: 'blue', margin: 10},
+  item: {fontSize: 24,
+      padding: 10,
+      backgroundColor:'#0000ff',
+      margin:10,color:'#ffffff',
+      borderWidth:1,
+      borderColor:'black'
+    },
 });
 export default App;
