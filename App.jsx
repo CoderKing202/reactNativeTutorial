@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Text, View, StyleSheet, TextInput, FlatList} from 'react-native';
+import {Button, Text, View, StyleSheet, TextInput, FlatList,ScrollView} from 'react-native';
 import exStyles from './style';
 
 function App() {
@@ -23,16 +23,51 @@ function App() {
   {
     id:10,
     name:'Tony'
+  },
+  {
+    id:11,
+    name:'Payback'
+  },
+  {
+    id:12,
+    name:'Anil'
+  },
+  {
+    id:10,
+    name:'Tony'
+  },
+  {
+    id:10,
+    name:'Tony'
+  },
+  {
+    id:10,
+    name:'Tony'
+  },
+  {
+    id:10,
+    name:'Tony'
+  },
+  {
+    id:10,
+    name:'Tony'
+  },
+  {
+    id:10,
+    name:'Kail'
   }
+  
  ]
   return (
     <>
     <Text style={{fontSize:31}}>
       List with Flat List Component
     </Text>
-    <FlatList data={users} renderItem={({item})=><Text style={styles.item}>{item.name}</Text>}
-    keyExtractor = {item=>item.id}
-    />
+    <ScrollView style={{marginBottom:30}}>
+    {
+      users.map((item)=><Text style={styles.item}>{item.name}</Text>)
+    }
+    </ScrollView>
     </>
   );
 }
