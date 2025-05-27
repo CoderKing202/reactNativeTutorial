@@ -61,24 +61,28 @@ function App() {
   return (
     <>
     <Text style={{fontSize:31}}>
-      List with Flat List Component
+      Grid with Dynamic Data
     </Text>
-    <ScrollView style={{marginBottom:30}}>
-    {
-      users.map((item)=><Text style={styles.item}>{item.name}</Text>)
-    }
-    </ScrollView>
+    <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>
+   {
+    users.map((item,id)=><Text style={styles.item}>{item.name}</Text>)
+   }
+   </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  item: {fontSize: 24,
-      padding: 10,
-      backgroundColor:'#0000ff',
-      margin:10,color:'#ffffff',
-      borderWidth:1,
-      borderColor:'black'
+  item: {
+    fontSize: 25,
+    backgroundColor:'blue',
+    color:'white',
+    margin:5,
+    padding:5,
+    width:120,
+    height:120,
+    textAlignVertical:'center',
+    textAlign:'center'
     },
 });
 export default App;
