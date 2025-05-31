@@ -1,88 +1,36 @@
 import React, {useState} from 'react';
 import {Button, Text, View, StyleSheet, TextInput, FlatList,ScrollView} from 'react-native';
 import exStyles from './style';
+import UserData from './components/UserData';
 
 function App() {
  const users = [
   {
     id:1,
-    name:'Anil'
+    name:'Anil',
+    email:'abc@test.com'
   },
   {
     id:2,
-    name:'Sam'
+    name:'Sam',
+    email:'abc@test.com'
   },
   {
     id:3,
-    name:'Peter'
+    name:'Peter',
+    email:'abc@test.com'
   },
-  {
-    id:4,
-    name:'Bruce'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:11,
-    name:'Payback'
-  },
-  {
-    id:12,
-    name:'Anil'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:10,
-    name:'Tony'
-  },
-  {
-    id:10,
-    name:'Kail'
-  }
-  
  ]
   return (
     <>
     <Text style={{fontSize:31}}>
-      Grid with Dynamic Data
+      Component in Loop with FlatList
     </Text>
-    <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>
-   {
-    users.map((item,id)=><Text style={styles.item}>{item.name}</Text>)
-   }
-   </View>
+    <FlatList data={ users } renderItem={( { item } )=>
+     <UserData item={ item }/> }/>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  item: {
-    fontSize: 25,
-    backgroundColor:'blue',
-    color:'white',
-    margin:5,
-    padding:5,
-    width:120,
-    height:120,
-    textAlignVertical:'center',
-    textAlign:'center'
-    },
-});
+
 export default App;
