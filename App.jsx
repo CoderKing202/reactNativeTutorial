@@ -1,31 +1,17 @@
-import React, {useState ,Component}from 'react';
-import {Button, Text, View, StyleSheet, TextInput, FlatList,ScrollView} from 'react-native';
-import Student from './components/Student.jsx'
-class App extends Component
-{
- constructor(){
-  super()
-  this.state = {
-    name:'Jatin',
-    age:20,
-  }
- }
- updateName(val){
-  this.setState({name:val})
- }
-  render(){
-    return (<View>
-      <Text style={{
-        color:'red',
-        fontSize:30
-      }}>{ this.state.name }</Text>
-      <TextInput placeholder='Enter your name' onChangeText={(text)=>{ this.updateName(text) }}/>
-      <Button title='Press me' onPress={this.fruit}/>
-      <Student name = {this.state.name}/>
-    </View>)
-  }
+import React, { useEffect, useState } from 'react'
+import { View,Text,Button } from 'react-native'
 
-  
+const App=()=> {
+  const [count,setCount] = useState(0)
+  useEffect(()=>{
+    console.warn("Hello2")
+  },[])
+  return (
+    <View>
+        <Text style = {{fontSize:30}}>Life Cycle with Use Effect {count}</Text>
+        <Button title ="Update Count" onPress={()=>setCount(count + 1)}/>
+    </View>
+  )
 }
 
-export default App;
+export default App
