@@ -2,29 +2,33 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Button} from 'react-native';
 
 const App = () => {
-const [show,setShow] = useState(true)
-  // useEffect(() => {
-  //   console.warn('do some animation');
-  // }, [count]);
-  // useEffect(() => {
-  //   console.warn('do some api here');
-  // }, [data]);
+  const [show, setShow] = useState(true);
+
   return (
     <View>
-
-      <Text style={{fontSize: 30}}>
-        Toggle Component </Text>
-        <Button title='Show component' onPress={()=>setShow(!show)}/>
-      {
-        show == true?<User/>:null
-      }
+      <Text style={{fontSize: 30}}>useEffect for Unmount Component</Text>
+      <Button
+        title="Toggle"
+        onPress={() => {
+          setShow(!show);
+        }}
+      />
+      {show ? <Student /> : null}
     </View>
   );
 };
-const User=()=> {
+const Student = () => {
+ let timer = setInterval(()=>{
+console.warn("Timer called ")
+  },2000)
+  useEffect(() => {
+    return () => {
+     clearInterval(timer)
+    };
+  });
   return (
     <View>
-   <Text style={{fontSize:30,color:'green'}}>User Component</Text>
+      <Text style={{fontSize: 30, color: 'red'}}>Student</Text>
     </View>
   );
 };
