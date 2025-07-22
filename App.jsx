@@ -1,35 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button} from 'react-native';
+import {StyleSheet} from 'react-native';
+import style from './style';
 
 const App = () => {
   const [show, setShow] = useState(true);
 
   return (
-    <View>
-      <Text style={{fontSize: 30}}>useEffect for Unmount Component</Text>
-      <Button
-        title="Toggle"
-        onPress={() => {
-          setShow(!show);
-        }}
-      />
-      {show ? <Student /> : null}
+    <View style={styles.main}>
+      <View style={styles.box1}>
+        <View style={styles.innerBox1}></View>
+        <View style={styles.innerBox2}></View>
+        <View style={styles.innerBox3}></View>
+      </View>
+      <View style={styles.box2}></View>
+      <View style={styles.box3}></View>
     </View>
   );
 };
-const Student = () => {
- let timer = setInterval(()=>{
-console.warn("Timer called ")
-  },2000)
-  useEffect(() => {
-    return () => {
-     clearInterval(timer)
-    };
-  });
-  return (
-    <View>
-      <Text style={{fontSize: 30, color: 'red'}}>Student</Text>
-    </View>
-  );
-};
+const styles = StyleSheet.create({
+  main: {flex: 1},
+  box1: {flex: 2, backgroundColor: 'red',flexDirection:'row'},
+  box2: {flex: 1, backgroundColor: 'green'},
+  box3: {flex: 1, backgroundColor: 'blue'},
+  innerBox1:{flex:1,backgroundColor:'skyblue',margin:10},
+  innerBox2:{flex:1,backgroundColor:'blue',margin:10},
+  innerBox3:{flex:1,backgroundColor:'orange',margin:10}
+});
 export default App;
