@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button} from 'react-native';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, TouchableHighlight } from 'react-native';
 import style from './style';
 
 const App = () => {
@@ -8,23 +8,46 @@ const App = () => {
 
   return (
     <View style={styles.main}>
-      <View style={styles.box1}>
-        <View style={styles.innerBox1}></View>
-        <View style={styles.innerBox2}></View>
-        <View style={styles.innerBox3}></View>
-      </View>
-      <View style={styles.box2}></View>
-      <View style={styles.box3}></View>
+      <TouchableHighlight>
+        <Text style={[styles.button,styles.success]}>Success</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.button,styles.primary]}>Primary</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.button,styles.warning]}>Warning</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.button,styles.error]}>Error</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={styles.button}>Button</Text>
+      </TouchableHighlight>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  main: {flex: 1},
-  box1: {flex: 2, backgroundColor: 'red',flexDirection:'row'},
-  box2: {flex: 1, backgroundColor: 'green'},
-  box3: {flex: 1, backgroundColor: 'blue'},
-  innerBox1:{flex:1,backgroundColor:'skyblue',margin:10},
-  innerBox2:{flex:1,backgroundColor:'blue',margin:10},
-  innerBox3:{flex:1,backgroundColor:'orange',margin:10}
-});
+
 export default App;
+
+const styles = StyleSheet.create(
+  {
+    main:{flex:1},
+    button:{
+      backgroundColor:'#bbb',
+      color:'#fff',
+      fontSize:24,
+      textAlign:'center',
+      padding:10,
+      margin: 10,
+      borderRadius:10,
+      shadowColor:'red',
+      elevation:10,
+      shadowOpacity:1
+    },
+    success:{backgroundColor:'green'},
+    primary:{backgroundColor:'blue'},
+    error:{backgroundColor:'red'},
+    warning:{backgroundColor:'gold'}
+    
+  }
+)
