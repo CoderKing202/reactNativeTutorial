@@ -6,27 +6,44 @@ import style from './style';
 const App = () => {
   const [show, setShow] = useState(true);
   const [selectedRadio, setSelectedRadio]= useState(1)
-
+  const skills = [
+    {
+      id:1,
+      name:'Java'
+    },
+    {
+      id:2,
+      name:'JS'
+    },
+    {
+      id:3,
+      name:'Node'
+    },
+    {
+      id:4,
+      name:'SQL'
+    },
+   {
+    id:5,
+    name:'Python'
+   } 
+  ]
   return (
     <View style={styles.main}>
-      <TouchableOpacity  onPress={()=>setSelectedRadio(1)}>
+      {
+        skills.map((item,index)=><TouchableOpacity key={index} 
+        onPress={()=>setSelectedRadio(item.id)}>
         <View style={styles.radioWrapper}>
           <View style={styles.radio}>
 
-          {selectedRadio == 1?<View style={styles.radioBg}></View>:null}
+          {selectedRadio == item.id?<View style={styles.radioBg}></View>:null}
           </View>
-            <Text style={styles.radioText}>Radio 1</Text>
+            <Text style={styles.radioText}>{item.name}</Text>
         </View>
      
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>setSelectedRadio(2)}>
-      <View style={styles.radioWrapper}>
-          <View style={styles.radio}>
-          {selectedRadio == 2?<View style={styles.radioBg} ></View>:null}
-          </View>
-            <Text style={styles.radioText}>Radio 2</Text>
-        </View>
-      </TouchableOpacity>
+      </TouchableOpacity>)
+      }
+  
     </View>
   );
 };
