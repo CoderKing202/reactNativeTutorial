@@ -1,49 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import {View, Text, Button, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {StyleSheet, TouchableHighlight} from 'react-native';
 import style from './style';
 
 const App = () => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [selectedRadio, setSelectedRadio]= useState(1)
-  const skills = [
-    {
-      id:1,
-      name:'Java'
-    },
-    {
-      id:2,
-      name:'JS'
-    },
-    {
-      id:3,
-      name:'Node'
-    },
-    {
-      id:4,
-      name:'SQL'
-    },
-   {
-    id:5,
-    name:'Python'
-   } 
-  ]
+
+  const displayLoader = ()=>{
+    setShow(true)
+    setTimeout(()=>{
+      setShow(false)
+    },3000)
+  }
   return (
     <View style={styles.main}>
-      {
-        skills.map((item,index)=><TouchableOpacity key={index} 
-        onPress={()=>setSelectedRadio(item.id)}>
-        <View style={styles.radioWrapper}>
-          <View style={styles.radio}>
-
-          {selectedRadio == item.id?<View style={styles.radioBg}></View>:null}
-          </View>
-            <Text style={styles.radioText}>{item.name}</Text>
-        </View>
-     
-      </TouchableOpacity>)
-      }
-  
+        {/* <ActivityIndicator size={200} color={'blue'}/> */}
+        {/* <ActivityIndicator size={'small'} color={'red'}/> */}
+        {show?<ActivityIndicator size={'small'} color={'red'}/>:null}
+        <ActivityIndicator size={100} color={'green'} animating={show}/>
+        <Button title='Show Loader' onPress={displayLoader}/>
     </View>
   );
 };
@@ -55,25 +31,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  radioText: {fontSize: 20},
-  radio:{
-    height:40,
-    width:40,
-    borderColor:'black',
-    borderWidth:2,
-    borderRadius:20,
-    margin: 10
-  },
-  radioWrapper:{
-    flexDirection:'row',
-    alignItems:'center'
-  },
-  radioBg:{
-    backgroundColor:"skyblue",
-    height:28,
-    width:28,
-    borderRadius:20,
-
-    margin:4
-  }
+  
 });
