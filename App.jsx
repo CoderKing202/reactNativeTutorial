@@ -12,6 +12,7 @@ const App = () => {
     setTimeout(()=>{
       setShow(false)
     },3000)
+    ///commit
   }
   return (
     <View style={styles.main}>
