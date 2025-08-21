@@ -1,37 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button,StyleSheet,Pressable} from 'react-native';
+import {View, Text, Button,StyleSheet, StatusBar} from 'react-native';
 import style from './style';
 
 const App = () => {
-
+const [hide,setHide] = useState(false)
+const [barStyle,setBarStyle] = useState("default")
   return (
-    <View style={styles.main} >
-      <Pressable
-        onPress={()=>{console.warn("normal on press")}}
-        onLongPress={()=>{console.warn("long press")}}
-        onPressIn={()=>console.warn("press in")}
-        onPressOut={()=>console.warn("press out")}
-        >
-        <Text style={styles.pressableBtn}> Pressable</Text>
-      </Pressable>
+    <View style={styles.container} >
+      <StatusBar backgroundColor={'red'} barStyle={barStyle} hidden={hide}/>
+      <Button title='Toggle Status Bar' onPress={()=>{setHide(!hide)}}/>
+      <Button title='Update Style' onPress={()=>{setBarStyle("dark-content")}}/>
     </View>
   );
 }
  const styles = StyleSheet.create({
-main:{
+container:{
   flex:1,
-  justifyContent:'center'
-},
-pressableBtn:{
-  backgroundColor:'blue',
-  color:'white',
-  padding:10,
-  margin:10,
-  borderRadius:10,
-  fontSize:20,
-  textAlign:'center',
-  shadowColor:'#000',
-  elevation:5,
+  justifyContent:'center',
 }
  })
 export default App;
