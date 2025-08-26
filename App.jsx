@@ -5,7 +5,7 @@ import WebView from 'react-native-webview';
 
 const App = () => {
   return (
-<WebView source={{uri:'https://www.google.com'}}/>
+<WebView source={{uri:'https://www.google.com'}}/>//
   );
 }
 export default App
