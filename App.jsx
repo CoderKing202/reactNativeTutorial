@@ -1,42 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button,StyleSheet} from 'react-native';
-import style from './style';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const App = () => {
-  const [show,setShow] = useState(false)
+  const Stack = createNativeStackNavigator()
+
 return (
-<View style={styles.container}>
-  { show?<View style={styles.modal}>
-    <View style={styles.body}>
-    <Text>Some Text</Text>
-    <Button title="Close" onPress={()=>setShow(false)}/>
+<NavigationContainer>
+  <Stack.Navigator>   
+  <Stack.Screen name="Login" component={Login}/>
+  <Stack.Screen name="Home" component={Home}/>
+  </Stack.Navigator>
+</NavigationContainer>
+  )
+}
+const Home = ()=>{
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+      <Text style={{fontSize:30}}>Home Screen</Text>
     </View>
-  </View>:null
-  }
-  <Button title="OPEN DIALOG" onPress={()=>setShow(true)}/>
-</View>
-  );
+  )
+}
+const Login = (props)=>{
+  return(
+    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+      <Text style={{fontSize:30}}>Login Screen</Text>
+      <Button title='Go to Home Page' onPress={()=>{props.navigation.navigate("Home")}}></Button>
+    </View>
+  )
 }
 export default App
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent:'flex-end',
-},
-modal:{
-  flex:1,
-  backgroundColor:'rgba(50,50,50,0.5)',
-  justifyContent:'center',
-  alignItems:'center',
-},
-body:{
-  backgroundColor:'white',
-  height:300,
-  width:300,
-  padding:20,
-  justifyContent:'flex-end',
-  borderRadius:10
-}
-})
