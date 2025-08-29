@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button,StyleSheet} from 'react-native';
+import {View, Text, Button,StyleSheet, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { Home } from './components/Home';
+import { Login } from './components/Login';
 
 const App = () => {
   const Stack = createNativeStackNavigator()
-
+  const btnAction = ()=>{
+    console.warn('btn pressed')
+  }
 return (
 <NavigationContainer>
   <Stack.Navigator
@@ -22,37 +25,28 @@ return (
     
     }}
   >   
-  <Stack.Screen name="Login" component={Login} />
-  <Stack.Screen name="Home" component={Home}
-    options={
+  <Stack.Screen name="Login" component={Login}    options={
       {
+        headerLeft:()=><Button title='Left' onPress={btnAction}/>,
+        headerRight:()=><Header/>,
         headerStyle:{
-            backgroundColor:'skyblue',
+            backgroundColor:'orange',
       },
+      title:"",
       headerTitleStyle:{
         fontSize:40
       },
       headerTintColor:'white'
       
-      }}
-  />
+      }} />
+  <Stack.Screen name="Home" component={Home}/>
   </Stack.Navigator>
 </NavigationContainer>
   )
 }
-const Home = ()=>{
-  return(
-    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text style={{fontSize:30}}>Home Screen</Text>
-    </View>
-  )
+const Header=()=>{
+  return <TextInput placeholder='name'/>
 }
-const Login = (props)=>{
-  return(
-    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-      <Text style={{fontSize:30}}>Login Screen</Text>
-      <Button title='Go to Home Page' onPress={()=>{props.navigation.navigate("Home")}}></Button>
-    </View>
-  )
-}
+
+
 export default App
