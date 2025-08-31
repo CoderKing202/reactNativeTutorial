@@ -1,52 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button,StyleSheet, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Home } from './components/Home';
-import { Login } from './components/Login';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+const Tab = createMaterialTopTabNavigator()
 const App = () => {
-  const Stack = createNativeStackNavigator()
-  const btnAction = ()=>{
-    console.warn('btn pressed')
-  }
 return (
 <NavigationContainer>
-  <Stack.Navigator
-  screenOptions={
-    {
-      headerStyle:{
-          backgroundColor:'blue',
-    },
-    headerTitleStyle:{
-      fontSize:25
-    },
-    headerTintColor:'orange'
-    
-    }}
-  >   
-  <Stack.Screen name="Login" component={Login}    options={
-      {
-        headerLeft:()=><Button title='Left' onPress={btnAction}/>,
-        headerRight:()=><Header/>,
-        headerStyle:{
-            backgroundColor:'orange',
-      },
-      title:"",
-      headerTitleStyle:{
-        fontSize:40
-      },
-      headerTintColor:'white'
-      
-      }} />
-  <Stack.Screen name="Home" component={Home}/>
-  </Stack.Navigator>
+  <Tab.Navigator>
+ <Tab.Screen name="Login" component={Login}/>
+ <Tab.Screen name="SignUp" component={SignUp}/>
+ <Tab.Screen name="Other" component={SignUp}/>
+  </Tab.Navigator>
 </NavigationContainer>
   )
 }
-const Header=()=>{
-  return <TextInput placeholder='name'/>
+export default App
+
+const SignUp = ()=>{
+  return (<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+<Text style={{fontSize:40}}>SignUp</Text>
+  </View>)
 }
 
-
-export default App
+const Login = ()=>{
+  return (<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+<Text style={{fontSize:40}}>Login</Text>
+  </View>)
+}
