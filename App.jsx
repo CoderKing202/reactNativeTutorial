@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button,StyleSheet, TextInput ,ScrollView} from 'react-native';
+import {View, Text, Button,StyleSheet, TextInput ,ScrollView, FlatList} from 'react-native';
 
 
 const App = () => {
@@ -13,16 +13,15 @@ const App = () => {
   }
   useEffect(()=>{getApiData()},[])
 return (
-<ScrollView>
-  <Text style={{ fontSize:30 }}>List With API Call</Text>
-  {data.length?data.map((item)=><View style={{padding:10 , borderBottomColor:'#ccc'
-    , borderBottomWidth:1
-  }}>
-    <Text style={{ fontSize: 20 , backgroundColor:'#ddd'}}> Id : {item.id}</Text>
-    <Text style={{ fontSize: 20 }}> Title : {item.title}</Text>
-    <Text style={{ fontSize: 20 }}> Body : {item.body}</Text>
-  </View>):null}
-</ScrollView>
+  <View>
+    <Text style={{fontSize:30}}>FlatList With API Data</Text>
+<FlatList data={data} renderItem={({item})=><View style={{
+  borderBottomColor:'orange',borderWidth:1,padding:10}}>
+<Text style={{fontSize:30, backgroundColor:'orange'}}>{item.id}</Text>
+<Text style={{fontSize:30}}>{item.title}</Text>
+<Text style={{fontSize:30}}>{item.body}</Text>
+</View>}/>
+</View>
   )
 }
 export default App
