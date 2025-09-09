@@ -22,6 +22,7 @@ return (
 <Text style={{fontSize:30}}>{item.body}</Text>
 </View>}/>
 </View>
+  // )
   )
 }
 export default App
