@@ -1,33 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button,StyleSheet, TextInput ,ScrollView, FlatList} from 'react-native';
+import {View, Text, Button,StyleSheet} from 'react-native';
 
 
 const App = () => {
-  const [data,setData] = useState([])
-  const getApiData=async ()=>{
-    const url = "http://10.0.2.2:3000/users "
-    let result =await fetch(url)
+  
+  const saveApiData=async ()=>{
+    const data = {name:"Sam",
+      age:34,
+      email:"sam@test.com"
+    }
+    const url = "http://10.0.2.2:3000/users"
+    let result = await fetch(url,{
+      method:'post',
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    })
     result = await result.json()
-    setData(result)
-    
+    console.warn(result)   
   }
-  useEffect(()=>{getApiData()},[])
 return (
   <View>
-    <Text style={{fontSize:30}}>Call json server API</Text>
-    {
-      data.length?data.map((item)=>{
-        return(<View style={{borderWidth:1, borderColor:'red'}}>
-          <Text style={{fontSize:30}}>{item.name}</Text>
-          <Text style={{fontSize:30}}>{item.age}</Text>
-          <Text style={{fontSize:30}}>{item.email}</Text>
-          </View>
-        )
-      }):null
-    }
- 
+  <Text style={{fontSize: 30}}>Post API Call </Text>
+  <Button title='Save Data' onPress={saveApiData}/>
 </View>
-  // )
   )
 }
 export default App
