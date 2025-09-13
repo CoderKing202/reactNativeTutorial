@@ -12,6 +12,12 @@ const App = () => {
       setData(result);
     }
   };
+  const deleteUser = async (id)=>{
+    const url = 'http://10.0.2.2:3000/users';
+    let result = await fetch(`${url}/${id}`,{method:'delete'});
+    result = await result.json();
+    getAPIData()
+  }
   useEffect(() => {
     getAPIData();
   },[]);
@@ -43,7 +49,7 @@ const App = () => {
                   <Button title='Update'/>
                 </View>
                 <View style={{flex:1}}>
-                  <Button title='Delete'/>
+                  <Button title='Delete' onPress={()=>deleteUser(item.id)}/>
                 </View>
               </View>
             );
