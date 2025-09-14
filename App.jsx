@@ -70,9 +70,21 @@ const App = () => {
 };
 const UserModal = (props)=>{
   console.warn(props.selectedUser)
+  const [name,setName] = useState(undefined)
+  const [age,setAge] = useState(undefined)
+  const [email,setEmail] = useState(undefined)
+  useEffect(()=>{
+    setName(props.selectedUser.name)
+    setEmail(props.selectedUser.email)
+    setAge(props.selectedUser.age.toString())
+    
+  },[props.selectedUser])
   return(<View style={styles.centeredView}>
     <View style={styles.modalView}>
-      <Text>{props.selectedUser.name}</Text>
+      <TextInput style={styles.input} value={name}/>
+      <TextInput style={styles.input} value={email}/>
+      <TextInput style={styles.input} value={age}/>
+      <View style={{marginBottom:10}}><Button title='Update'/></View>
       <Button title='CLOSE' onPress={()=>{props.setShowModal(false)}}/>
     </View>
   </View>)
@@ -95,11 +107,18 @@ const styles = StyleSheet.create({
   },
   modalView:{
     backgroundColor:'white',
-    padding:60,
+    padding:20,
     borderRadius:10,
     shadowColor:'#000',
     shadowOpacity:0.70,
     elevation:5
+  },
+  input:{
+borderColor:'skyblue',
+borderWidth:1,
+width:300,
+marginBottom:10,
+fontSize:20
   }
 
 });
