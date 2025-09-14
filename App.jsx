@@ -21,6 +21,7 @@ const App = () => {
     result = await result.json();
     getAPIData()
   }
+
   useEffect(() => {
     getAPIData();
   },[]);
@@ -63,7 +64,7 @@ const App = () => {
           })
         : null}
         <Modal transparent={true} visible={showModal}>
-         <UserModal setShowModal={setShowModal} selectedUser={selectedUser}/>
+         <UserModal setShowModal={setShowModal} selectedUser={selectedUser} getAPIData={getAPIData}/>
         </Modal>
     </View>
   );
@@ -73,6 +74,25 @@ const UserModal = (props)=>{
   const [name,setName] = useState(undefined)
   const [age,setAge] = useState(undefined)
   const [email,setEmail] = useState(undefined)
+  const updateUser=async ()=>{
+    console.warn(name,age,email)
+    const url = 'http://10.0.2.2:3000/users'
+    const id = props.selectedUser.id
+    let result = await fetch(`${url}/${id}`,{method:'put',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({name,age,email})
+      
+    })
+    result = await result.json()
+    if(result)
+    {
+      console.warn(result)
+    }
+    props.getAPIData()
+    props.setShowModal(false )
+  }
   useEffect(()=>{
     setName(props.selectedUser.name)
     setEmail(props.selectedUser.email)
@@ -81,15 +101,15 @@ const UserModal = (props)=>{
   },[props.selectedUser])
   return(<View style={styles.centeredView}>
     <View style={styles.modalView}>
-      <TextInput style={styles.input} value={name}/>
-      <TextInput style={styles.input} value={email}/>
-      <TextInput style={styles.input} value={age}/>
-      <View style={{marginBottom:10}}><Button title='Update'/></View>
+      <TextInput style={styles.input} value={name} onChangeText={(text)=>setName(text)}/>
+      <TextInput style={styles.input} value={email} onChangeText={(text)=>setEmail(text)}/>
+      <TextInput style={styles.input} value={age} onChangeText={(text)=>setAge(text)}/>
+      <View style={{marginBottom:10}}><Button title='Update' onPress={updateUser}/></View> 
       <Button title='CLOSE' onPress={()=>{props.setShowModal(false)}}/>
     </View>
   </View>)
 }
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   container: {flex: 1},
   dataWrapper: {
     backgroundColor:'orange',
