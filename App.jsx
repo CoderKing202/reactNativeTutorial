@@ -1,23 +1,28 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const App = () => {
-  const [data, setData] = useState([]);
-  const input= useRef()
-  const updateInput = ()=>{
-    input.current.focus()
-    input.current.setNativeProps({
-      fontSize:24,
-      color:'green'
-    })
+  const [user,setUser] = useState('')
+  const setData = async ()=>{
+    await AsyncStorage.setItem("name","Jatin Lama")
+  }
+  const getData = async ()=>{
+    const name = await AsyncStorage.getItem("name")
+    console.warn(name)
+    setUser(name)
+  }
+  const removeData = async ()=>{
+  await AsyncStorage.removeItem("name")
+  setUser("")
   }
   return (
     <View style={styles.container}>
-      <TextInput placeholder='Enter Name' ref = {input} style={styles.input}/>
-      <TextInput placeholder='Enter Password' style={styles.input}/>
-      <Button title="Update Input" onPress={updateInput}/>
+      <Text style={{fontSize:40}}>AsyncStorage with React Native | {user}</Text>
+      <Button title="Set Data" onPress={setData}/>
+      <Button title="Get Data" onPress={getData}/>
+      <Button title="Remove Data" onPress={removeData}/>
     </View>
-  );
+  ); 
 };
 const styles = StyleSheet.create({
   container:{
