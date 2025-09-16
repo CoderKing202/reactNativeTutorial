@@ -16,13 +16,30 @@ const App = () => {
   setUser("")
   }
   return (
-    <View>
-      <Text style={{fontSize:40}}>AsyncStorage with React Native | {user}</Text>
-      <Button title="Set Data" onPress={setData}/>
-      <Button title="Get Data" onPress={getData}/>
-      <Button title="Remove Data" onPress={removeData}/>
+    <View >
+      <Text style={styles.text}>AsyncStorage with React Native | {user}</Text>
+      <View><Button title="Set Data" onPress={setData}/></View>
+      <View><Button title="Get Data" onPress={getData}/></View>
+      <View><Button title="Remove Data" onPress={removeData}/></View>
+      <View style={styles.box}></View>
     </View>
+    
   ); 
 };
 
+const styles = StyleSheet.create({
+  text:{
+    marginBottom:40,
+    fontSize:40
+  },
+  box:{
+    backgroundColor:'green',
+    height:100,
+    width:100,
+    padding:10,
+    margin:20,
+    borderColor:'red',
+    borderWidth:2
+  }
+})
 export default App;
