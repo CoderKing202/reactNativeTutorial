@@ -16,7 +16,7 @@ const App = () => {
   setUser("")
   }
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={{fontSize:40}}>AsyncStorage with React Native | {user}</Text>
       <Button title="Set Data" onPress={setData}/>
       <Button title="Get Data" onPress={getData}/>
@@ -24,14 +24,5 @@ const App = () => {
     </View>
   ); 
 };
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    padding:16
-  }, 
-  input:{
-    borderColor:'skyblue',
-    borderWidth:2
-  }
-})
+
 export default App;
