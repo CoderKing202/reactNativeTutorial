@@ -1,45 +1,47 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, StyleSheet, TextInput} from 'react-native';
+import {View, Text, Button, StyleSheet, TextInput, Image, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import Header from './components/Header';
+import Product from './components/Product';
 const App = () => {
-  const [user,setUser] = useState('')
-  const setData = async ()=>{
-    await AsyncStorage.setItem("name","Jatin Lama")
-  }
-  const getData = async ()=>{
-    const name = await AsyncStorage.getItem("name")
-    console.warn(name)
-    setUser(name)
-  }
-  const removeData = async ()=>{
-  await AsyncStorage.removeItem("name")
-  setUser("")
-  }
+  const products = [
+    {
+        name:'Samsung Mobile',
+        color:'white',
+        price:30000,
+        image:'https://img.freepik.com/free-vector/smart-phone-flat-style_78370-4084.jpg?semt=ais_incoming&w=740&q=80'
+    },
+    {
+        name:'Apple I phone',
+        color:'black',
+        price:130000,
+        image:'https://img.freepik.com/free-vector/smart-phone-flat-style_78370-4084.jpg?semt=ais_incoming&w=740&q=80'
+    },
+    {
+        name:'Nokia Mobile',
+        color:'green',
+        price:20000,
+        image:'https://img.freepik.com/free-vector/smart-phone-flat-style_78370-4084.jpg?semt=ais_incoming&w=740&q=80'
+    }
+  ]
   return (
-    <View >
-      <Text style={styles.text}>AsyncStorage with React Native | {user}</Text>
-      <View><Button title="Set Data" onPress={setData}/></View>
-      <View><Button title="Get Data" onPress={getData}/></View>
-      <View><Button title="Remove Data" onPress={removeData}/></View>
-      <View style={styles.box}></View>
+    <View style={styles.container}>
+          <Header/>
+          <ScrollView>
+          {
+            products.map((item)=><Product item={item}/>)
+          }
+          </ScrollView>
+          
+          
+     
     </View>
-    
   ); 
 };
 
 const styles = StyleSheet.create({
-  text:{
-    marginBottom:40,
-    fontSize:40
-  },
-  box:{
-    backgroundColor:'green',
-    height:100,
-    width:100,
-    padding:10,
-    margin:20,
-    borderColor:'red',
-    borderWidth:2
+  container:{
+    flex:1,
   }
 })
 export default App;
