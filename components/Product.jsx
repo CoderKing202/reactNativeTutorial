@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button, StyleSheet, TextInput, Image} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { addToCart } from './redux/action';
 import {useDispatch} from 'react-redux'
 

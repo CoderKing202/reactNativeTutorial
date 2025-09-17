@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button, StyleSheet, TextInput, Image, ScrollView} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import Header from './components/Header';
 import Product from './components/Product';
 const App = () => {
