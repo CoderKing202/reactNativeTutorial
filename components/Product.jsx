@@ -8,7 +8,6 @@ const item = props.item
 const dispatch = useDispatch()
 const handleaddToCart = (item)=>{
 dispatch(addToCart(item))
-
 }
   return (
     <View style={{alignItems:'center', borderBottomColor:'orange',
