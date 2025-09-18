@@ -5,10 +5,12 @@ import {useSelector} from 'react-redux';
 const Header = () => {
   const cartData = useSelector(state => state.reducer);
   const [cartitems, setCartItems] = useState(0);
-  console.warn(cartData);
+  
   useEffect(() => {
     setCartItems(cartData.length);
+    
   }, [cartData]);
+  
   return (
     <View>
       

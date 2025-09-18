@@ -4,6 +4,7 @@ import {View, Text, Button, StyleSheet, TextInput, Image, ScrollView} from 'reac
 import Header from './components/Header';
 import Product from './components/Product';
 const App = () => {
+  
   const products = [
     {
         name:'Samsung Mobile',
