@@ -1,4 +1,4 @@
-import {ADD_TO_CART} from './constant'
+import {ADD_TO_CART,REMOVE_FROM_CART} from './constant'
 
 export function addToCart(item){
  return {
@@ -6,3 +6,9 @@ export function addToCart(item){
     data:item
  }
 }
+export function removeFromCart(item){
+   return {
+      type:REMOVE_FROM_CART,
+      data:item
+   }
+  }
