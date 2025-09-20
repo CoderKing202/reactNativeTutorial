@@ -9,7 +9,6 @@ import UserList from './components/UserList';
 const App = () => {
   
   const Stack = createNativeStackNavigator()
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
