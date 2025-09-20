@@ -12,8 +12,9 @@ export const reducer = (state = initialState, action) => {
         })
         return [...result]
     
-    case SET_USER_DATA :
-      return [...state,action.data]
+    case SET_USER_DATA:
+      return [...action.data.users]
+
     default:
         return state
         

@@ -12,7 +12,9 @@ const UserList= () => {
   console.warn("in component", userList)
   return (
     <View style={styles.container}>
-      <Text>User List Screen</Text>
+      {
+        userList.length?userList.map((item)=><Text style={{fontSize:18}}>{item.firstName}</Text>):null
+      }
     </View>
   );
 };
